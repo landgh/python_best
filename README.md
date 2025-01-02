@@ -16,4 +16,15 @@ To run the Unit Tests from the root of the repo, run
 pytest -v
 ```
 
-If you have any questions about the project, please raise an Issue on GitHub. 
+# asyncio notes
+- Define coroutine prefixed "async"
+- If a func (coroutine) behaviors like IO-block call (calls to remote, open file, sleep or queue operations), use it after "await" keyword.
+- on "await", control returns to event loop to schedule other cooroutines. If available will be scheduled to run while blocking call is being waited.
+
+# Set up remote debug
+- Create remote debug config in .vscode/launch.json (Shft+Ctl+P) | Debug: Add Configuration | Python Debugger
+- Start the script from bash git:
+```
+python -m debugpy --listen 0.0.0.0:5678 --wait-for-client src/async_stream.py
+```
+-  Debug view in Visual Studio Code. Select the "Python Debugger: Remote Attach" configuration. Click the green play button to start debugging.
