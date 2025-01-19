@@ -8,7 +8,7 @@ import boto3
 import pytest
 from moto import mock_s3 # pip install "moto<5"
 
-from src.my_lambda import lambda_handler
+from src.mylambda.my_lambda import lambda_handler
 
 logging.basicConfig(level=logging.INFO)
 # logging.getLogger().setLevel(logging.DEBUG)
