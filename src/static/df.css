@@ -1,0 +1,27 @@
+.custom-datatable {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 10px 4px 8px rgba(210, 0, 10, 0.1);
+    overflow: hidden;
+}
+
+.custom-datatable table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.custom-datatable th {
+    background-color: #f4f4f4;
+    color: #333;
+    text-align: left;
+    padding: 10px;
+}
+
+.custom-datatable td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.custom-datatable tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
