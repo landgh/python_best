@@ -1,3 +1,4 @@
+import time
 import pandas as pd
 from cashflow_with_parent import df_cff
 
@@ -22,6 +23,8 @@ amount_cols = [col for col in df.columns if col != 'hierarchy']
 # Initialize a dictionary of dictionaries to store results
 agg_dict = {}
 
+start_time = time.time()
+
 # Iterate over rows to build up sums at each parent level
 for _, row in df.iterrows():
     path_parts = row['hierarchy'].split('.')
@@ -36,6 +39,9 @@ for _, row in df.iterrows():
 agg_df = pd.DataFrame([
     {'hierarchy': key, **values} for key, values in agg_dict.items()
 ])
+
+# Calculate and display elapsed time
+print(f"Elapsed time: {time.time() - start_time} .................")
 
 # Optional: sort by hierarchy level and name
 agg_df['level'] = agg_df['hierarchy'].apply(lambda x: len(x.split('.')))
