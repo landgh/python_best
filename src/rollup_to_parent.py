@@ -33,6 +33,7 @@ for _, row in df.iterrows():
         if parent_key not in agg_dict:
             agg_dict[parent_key] = {col: 0 for col in amount_cols}
         for col in amount_cols:
+            print(f"parent_key: [{parent_key}][{col}] beginning {agg_dict[parent_key][col]}, adding row[{col}]: {row[col]}")
             agg_dict[parent_key][col] += row[col]
 
 # Convert agg_dict into a DataFrame
