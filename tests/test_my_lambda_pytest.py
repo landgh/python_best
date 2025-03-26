@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO)
 # logging.getLogger().setLevel(logging.DEBUG)
 # logging.getLogger("botocore").setLevel(logging.DEBUG)
 
-@pytest.fixture(autouse=True)
+# @pytest.fixture(autouse=True)
 def mock_aws_env_vars(monkeypatch):
     # Set up dummy AWS credentials
     for var in ["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "AWS_SESSION_TOKEN", "AWS_DEFAULT_REGION"]:

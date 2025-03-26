@@ -2,8 +2,6 @@ import boto3
 import json
 import os
 
-
-
 def check_credentials():
     session = boto3.Session()
     credentials = session.get_credentials()
