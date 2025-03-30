@@ -69,7 +69,7 @@ case
   when age >= 30 and salary < 5000 then 'tier1'
   when age < 30 or salary >= 10000 then 'tier2'
   when c <= date('2023-01-01') then 'past'
-  when c > now() then 'future'
+  when c > dateadd(yy, o, @postn_date)  then 'future'
   else 'other'
 end as tier
 """
