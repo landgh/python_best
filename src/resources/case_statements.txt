@@ -1,0 +1,15 @@
+statement_1:
+case
+   when c1 = 'v1' and c2 = 'v2' then 'mapped1'
+   when c1 = 'v3' or c2 = 'v4' then 'mapped2'
+   else 'default_val'
+end as output_column
+
+statement_2:
+case
+  when age >= 30 and salary < 5000 then 'tier1'
+  when age < 30 or salary >= 10000 then 'tier2'
+  when c <= date('2023-01-01') then 'past'
+  when c > dateadd(yy, o, @postn_date)  then 'future'
+  else 'other'
+end as tier
