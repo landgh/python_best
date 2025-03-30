@@ -147,13 +147,30 @@ def parse_condition_to_combos(condition_str):
                     val = parse_value_token(val_tok)
                     values.append({col: val})
             return values
-        else:
-            val_tok = consume()
-            val = parse_value_token(val_tok)
+       else:
+            # After an operator, capture full expression like: date('2023-01-01') or now()
+            val_parts = []
+            parens = 0
+            while True:
+                tok = peek()
+                if tok is None:
+                    break
+                if tok.lower() in ('and', 'or') and parens == 0:
+                    break
+                if tok == '(':
+                    parens += 1
+                elif tok == ')':
+                    if parens == 0:
+                        break
+                    parens -= 1
+                val_parts.append(consume())
+            val_expr = ' '.join(val_parts)
+            # Clean quotes, or keep as raw expression
+            val = val_expr.strip()
             if op == '=':
                 return [{col: val}]
             else:
-                return [{col: f"{op}{val}"}]
+                return [{col: f"{op} {val}"}]
 
     def parse_factor():
         if peek() == '(':
