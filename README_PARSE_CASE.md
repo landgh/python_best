@@ -1,6 +1,5 @@
 ###  paser_case_statement.py
 ```python
-
 import re
 
 from case_to_dict import parse_condition_to_combos, print_combinations_table
@@ -71,6 +70,8 @@ input_case = """
 case 
   when age >= 30 and salary < 5000 then 'tier1'
   when age < 30 or salary >= 10000 then 'tier2'
+  when c <= date('2023-01-01') then 'past'
+  when c > now() then 'future'
   else 'other'
 end as tier
 """
