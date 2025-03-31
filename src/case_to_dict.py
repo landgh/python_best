@@ -10,7 +10,7 @@ def parse_condition_to_combos(condition_str):
             \bAND\b|\bOR\b|\bIN\b| # logic keywords
             \(|\)|,|               # symbols
             '[^']*'|               # quoted string
-            [\w.]+                 # identifiers (column names, values)
+            @?[\w.]+                 # identifiers with optional @ for sql param (column names, values)
         )\s*
     """, re.IGNORECASE | re.VERBOSE)
     

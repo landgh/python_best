@@ -2,17 +2,6 @@ import re
 
 from case_to_dict import parse_condition_to_combos, print_combinations_table
 
-# from case_to_dict import parse_condition_to_combos, print_combinations_table
-
-# === Include the previously defined functions ===
-# - parse_condition_to_combos()
-# - print_combinations_table()
-# from previous logic
-
-# Reuse them, assuming they’re already in your codebase.
-
-# --- Add this new function ---
-
 def parse_case_statement(case_str):
     # Normalize and strip
     case_str = case_str.strip().lower()
@@ -53,25 +42,4 @@ def parse_case_statement(case_str):
     final_cols = sorted(all_cols - {"direct mapped", output_col})
     final_cols += ["direct mapped", output_col]
 
-    print_combinations_table(all_combos, final_cols)
-
-# === Usage Example ===
-# input_case = """
-# case 
-#   when c1 = 'v1' and c2 = 'v2' then 'mapped1'
-#   when c1 = 'v3' or c2 = 'v4' then 'mapped2'
-#   else 'default_val' 
-# end as output_column
-# """
-
-input_case = """
-case 
-  when age >= 30 and salary < 5000 then 'tier1'
-  when age < 30 or salary >= 10000 then 'tier2'
-  when c <= date('2023-01-01') then 'past'
-  when c > dateadd(yy, o, @postn_date)  then 'future'
-  else 'other'
-end as tier
-"""
-
-parse_case_statement(input_case)
+    return all_combos
