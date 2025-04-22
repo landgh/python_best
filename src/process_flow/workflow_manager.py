@@ -1,6 +1,7 @@
 from enum import Enum, auto
-from typing import List, Dict, Callable
+from typing import List, Dict, Callable, Optional
 import uuid
+import threading
 
 
 class WorkflowType(Enum):
@@ -49,8 +50,20 @@ class Workflow:
 
 
 class WorkflowManager:
+    _instance = None
+    _lock = threading.Lock()
+
     def __init__(self):
+        # Allow DI use: init doesn't enforce singleton
         self.workflows: Dict[str, Workflow] = {}
+
+    @classmethod
+    def get_instance(cls) -> 'WorkflowManager':
+        if cls._instance is None:
+            with cls._lock:
+                if cls._instance is None:
+                    cls._instance = cls()
+        return cls._instance
 
     def create_workflow(self, event: Event, workflow_type: WorkflowType) -> Workflow:
         workflow = Workflow(event, workflow_type)
@@ -69,7 +82,9 @@ if __name__ == "__main__":
     event1 = Event("OnFileUpload", trigger_condition=lambda: True)
     event2 = Event("OnManualReview", trigger_condition=lambda: False)
 
-    manager = WorkflowManager()
+    # Use Singleton instance
+    manager = WorkflowManager.get_instance()
+
     wf1 = manager.create_workflow(event1, WorkflowType.API)
     wf2 = manager.create_workflow(event2, WorkflowType.MANUAL)
 

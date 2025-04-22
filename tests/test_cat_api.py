@@ -1,6 +1,6 @@
 import pytest
 import requests
-from src.cat_api import CatFact
+from cat_api import CatFact
 
 
 @pytest.fixture

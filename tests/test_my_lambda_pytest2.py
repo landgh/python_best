@@ -2,7 +2,7 @@ import logging
 import boto3
 import pytest
 from unittest.mock import MagicMock
-from src.mylambda.my_lambda import lambda_handler
+from my_lambda import lambda_handler
 import pdb  # Import the pdb module
 
 '''
@@ -71,7 +71,7 @@ def test_lambda_handler(mock_boto3):
     }
 
     # Set a breakpoint
-    pdb.set_trace()
+    # pdb.set_trace()
 
     # Call the Lambda function
     response = lambda_handler(event, None)

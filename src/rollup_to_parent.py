@@ -1,7 +1,7 @@
 import time
 from typing import Any
 import pandas as pd
-from cashflow_with_parent import df_cff
+from .cashflow_with_parent import df_cff  # Use relative import
 
 # Sample data with multiple amount columns
 # data = {

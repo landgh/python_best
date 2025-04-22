@@ -1,11 +1,12 @@
 {
+    "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python Debugger: Current File",
+            "name": "Python: Debug Tests",
             "type": "debugpy",
             "request": "launch",
-            "program": "${file}",
-            "cwd": "${workspaceFolder}/src",
+            "program": "${workspaceFolder}/tests", // Specify the tests folder or another entry point
+            "args": ["-m", "pytest"],
             "console": "integratedTerminal"
         }
     ]
