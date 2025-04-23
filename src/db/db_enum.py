@@ -1,8 +1,12 @@
 from enum import Enum, auto
 
-class WorkflowType(Enum):
+class EventType(Enum):
     API = "API"
     MANUAL = "Manual"
+
+class WorkflowType(Enum):
+    FULL = "Full"
+    CATEGORY = "Category"
 
 
 class WorkflowState(Enum):
