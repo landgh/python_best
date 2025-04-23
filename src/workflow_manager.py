@@ -4,6 +4,20 @@ import uuid
 import threading
 
 
+class WorkflowType(Enum):
+    API = "API"
+    MANUAL = "Manual"
+
+
+class WorkflowState(Enum):
+    PENDING = "Pending"
+    SUCCESS = "Success"
+    FAIL = "Fail"
+    WARNING = "Warning"
+    APPROVED = "Approved"
+    CANCEL = "Cancel"
+
+
 class Event:
     def __init__(self, name: str, trigger_condition: Callable[[], bool]):
         self.name = name
@@ -18,7 +32,7 @@ class Workflow:
         self.id = str(uuid.uuid4())
         self.event = event
         self.type = workflow_type
-        self.state = WorkflowState.RUNNING  # Initial state
+        self.state = WorkflowState.PENDING
         self.history: List[WorkflowState] = [self.state]
 
     def transition_state(self, new_state: WorkflowState):
